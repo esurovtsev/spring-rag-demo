@@ -11,6 +11,8 @@
 - Base package will be `com.grabduck.springrag`
 - Project will be demoed on YouTube (GrabDuck) and used as a portfolio reference
 - Introduce a `service` package for coordinating RAG workflow, maintaining separation of concerns
+- RAG demonstration will use Amazon Return Policy content; a static JSON file will be included in the project and loaded into the vector store at startup if empty (pre-populated data approach)
+- The API will include a feature toggle (request param) to enable/disable RAG (default: on) for comparison purposes
 
 ## Task List
 - [x] Initialize project using Spring Initializr (base package: com.grabduck.springrag, Java 21, in spring-rag-demo folder)
@@ -28,6 +30,8 @@
 - [ ] Create REST controller with POST `/ask` endpoint (embed → search → prompt → generate → respond)
 - [ ] Add Swagger/OpenAPI documentation
 - [ ] (Optional) Add basic frontend UI
+- [ ] Implement Amazon Return Policy data initializer to load static JSON content into vector DB on startup if empty
+- [ ] Add feature toggle (request param) to enable/disable RAG in the `/ask` endpoint (default: on)
 - [ ] Prepare demo walkthrough and documentation
 
 ## Current Goal
