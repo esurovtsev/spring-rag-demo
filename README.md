@@ -52,15 +52,32 @@ The application implements a stateless RAG pattern as illustrated in the diagram
 
 ## Package Structure
 
-The application follows a modular structure with clear separation of concerns:
+The application follows a hexagonal/clean architecture with domain-centric package organization:
 
-- **`embedding`**: Handles text-to-vector transformations
+### Core Domain
+- **`domain`**: Contains the core domain models and orchestration services
+  - Rich domain models shared across the application
+  - RagService for coordinating the full RAG workflow
+  - DataInitializer for populating the vector store
+
+### Adapters
+- **`embedding`**: Handles text-to-vector transformations using OpenAI
+  - Includes embedding-specific models and services
+- **`chat`**: Manages interactions with OpenAI's language models
+  - Includes chat-specific models and services
 - **`vectorstore`**: Manages vector storage and retrieval in Qdrant
-- **`chat`**: Manages interactions with the LLM
-- **`service`**: Coordinates the RAG workflow (embedding → retrieval → generation)
-- **`controller`**: Exposes the REST API endpoints
-- **`config`**: Contains application configuration
-- **`model`**: Defines data transfer objects and domain models
+  - Includes vector store-specific models and services
+- **`web`**: Exposes the REST API endpoints and contains web-layer DTOs
+  - Groups all web-related concerns in one place
+
+### Architectural Benefits
+
+This domain-centric approach provides several advantages:
+
+- **Clean Dependencies**: Adapter packages depend on the domain, not on each other
+- **Separation of Concerns**: Each package has a clear, focused responsibility
+- **Testability**: Easier to mock dependencies for testing
+- **Flexibility**: Implementation details in adapters can change without affecting the domain
 
 ## Getting Started
 
