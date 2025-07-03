@@ -1,0 +1,28 @@
+# Test configuration with mock values
+
+# Application name
+spring:
+  application:
+    name: springrag-test
+  # OpenAI Configuration - Mock values for testing
+  ai.openai:
+    api-key: test-api-key
+    chat:
+      options:
+        model: gpt-4o-mini
+    embedding:
+      options:
+        model: text-embedding-3-small
+
+# Qdrant Configuration - Mock values for testing
+qdrant:
+  host: localhost
+  port: 6333
+  collection-name: test-collection
+
+# Set test logging level
+logging:
+  level:
+    com:
+      grabduck:
+        springrag: DEBUG

@@ -1,0 +1,32 @@
+# Application name
+spring:
+  application:
+    name: springrag
+
+  # OpenAI Configuration
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:api-key-not-set}
+      base-url: https://api.openai.com
+      chat:
+        options:
+          model: gpt-4o-mini
+      embedding:
+        options:
+          model: text-embedding-3-small
+
+# Qdrant Configuration
+qdrant:
+  host: ${QDRANT_HOST:localhost}
+  port: ${QDRANT_PORT:6333}
+  collection-name: ${QDRANT_COLLECTION:spring-rag-collection}
+
+# Logging Configuration
+logging:
+  level:
+    com:
+      grabduck:
+        springrag: INFO
+    org:
+      springframework:
+        ai: INFO
