@@ -13,8 +13,8 @@
  * 
  * <p>Key components:</p>
  * <ul>
- *   <li>Document: Core representation of documents and their chunks</li>
- *   <li>Ports: Interfaces defining what the domain needs from adapters</li>
+ *   <li>model: Contains domain model classes (Document, Embedding, Query, Response)</li>
+ *   <li>port: Contains interfaces defining what the domain needs from adapters</li>
  *   <li>RagService: Main orchestration service for the RAG workflow</li>
  *   <li>DataInitializer: Service for initializing the vector database</li>
  *   <li>RagConstants: Shared constants for RAG operations</li>
