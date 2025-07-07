@@ -1,6 +1,9 @@
-package com.grabduck.springrag.domain;
+package com.grabduck.springrag.domain.port;
 
 import java.util.List;
+
+import com.grabduck.springrag.domain.model.Document;
+import com.grabduck.springrag.domain.model.Query;
 
 /**
  * Port interface for chat/LLM operations.

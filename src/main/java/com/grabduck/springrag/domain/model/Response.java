@@ -1,4 +1,4 @@
-package com.grabduck.springrag.domain;
+package com.grabduck.springrag.domain.model;
 
 import java.util.List;
 
