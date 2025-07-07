@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.grabduck.springrag.domain.model.Embedding;
 import com.grabduck.springrag.domain.port.EmbeddingPort;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -17,14 +18,11 @@ public class OpenAiEmbeddingAdapter implements EmbeddingPort {
     private final OpenAiEmbeddingClient embeddingClient;
 
     @Override
-    public Embedding embed(String text) {
-        if (text == null || text.trim().isEmpty()) {
-            throw new IllegalArgumentException("Text for embedding cannot be null or empty");
-        }
-
+    public Embedding embed(@NonNull String text) {
         try {
-            List<Double> embeddingList = embeddingClient.embed(text);
-            return new Embedding(embeddingList);
+            var source = text.trim();
+            List<Double> embeddingList = embeddingClient.embed(source);
+            return new Embedding(embeddingList, source);
             
         } catch (IllegalArgumentException e) {
             throw new IllegalStateException("OpenAI returned an empty embedding response", e);
