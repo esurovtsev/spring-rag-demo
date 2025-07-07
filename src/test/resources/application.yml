@@ -6,7 +6,7 @@ spring:
     name: springrag-test
   # OpenAI Configuration - Mock values for testing
   ai.openai:
-    api-key: test-api-key
+    api-key: api-key-not-set
     chat:
       options:
         model: gpt-4o-mini
