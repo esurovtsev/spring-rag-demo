@@ -12,7 +12,8 @@
 - Project will be demoed on YouTube (GrabDuck) and used as a portfolio reference
 - The architectural decision about logical organization of classes and concerns is now documented in the README.md
 - The `config` package is a standard Spring Boot configuration package; its purpose is self-explanatory and not documented in detail in the README.md
-- The domain package contains ports (interfaces) that define what the core needs from adapters, following hexagonal architecture principles, as clarified and documented in package-info.java
+- The domain package now uses a split-by-component-type structure: domain models are in `domain.model`, ports (interfaces) in `domain.port`, and orchestration services (like RagService) remain in the domain root. This follows best practices for separation of concerns and maintainability.
+- Decision: The `Embedding` domain model must always include the source text (not just the vector). The codebase was just refactored to enforce this, ensuring all embedding objects are fully traceable and consistent.
 - Introduce a `domain` package for the application core: contains rich domain models and orchestration services; all other packages (embedding, chat, vectorstore, web, config) act as adapters and depend on domain, but not on each other
 - Use a domain-centric package structure: each functional package (embedding, chat, vectorstore, etc.) contains its own adapters directly, with no extra subpackage hierarchy for simplicity; the `domain` package is reserved for cross-cutting domain models and orchestration services only. As per user agreement and recent actions, all domain classes (models, ports, orchestration, etc.) should be placed directly in the `domain` package—do not use a `model` subpackage.
 - RAG demonstration will use Amazon Return Policy content; a static JSON file will be included in the project and loaded into the vector store at startup if empty (pre-populated data approach)
@@ -34,11 +35,11 @@
         - [x] Define core domain models: Query, Response
         - [x] Define core domain models: Embedding, etc.
         - [x] Define port interfaces: EmbeddingClient, VectorStore, ChatClient
-- [ ] Step 3: Embedding Implementation (branch step-3-embedding-implementation)
-    - [ ] Implement EmbeddingClient interface/class in embedding package
-    - [ ] Add configuration for OpenAI embedding model
-    - [ ] Write unit/integration tests for embedding functionality
-    - [ ] Add example/test data to verify embeddings
+- [x] Step 3: Embedding Implementation (branch step-3-embedding-implementation)
+    - [x] Implement EmbeddingClient interface/class in embedding package
+    - [x] Add configuration for OpenAI embedding model
+    - [x] Write unit/integration tests for embedding functionality
+    - [x] Add simple integration test to embed 'hello world' and print vector
 - [ ] Step 4: Vector Store Integration (branch step-4-vector-store)
     - [ ] Add Docker Compose for Qdrant
     - [ ] Configure Qdrant connection in application properties
@@ -54,7 +55,7 @@
     - [ ] Integrate with EmbeddingClient and Qdrant
     - [ ] Write tests for end-to-end vector storage/retrieval
 - [ ] Step 7: RAG Service Implementation (branch step-7-rag-service)
-    - [ ] Implement RagService class in domain package
+    - [x] Implement RagService class in domain package
     - [ ] Wire together embedding, vectorstore, and chat components
     - [ ] Add business logic for RAG orchestration
     - [ ] Write tests for full RAG workflow
@@ -78,4 +79,4 @@
     - [ ] Record or script demo for YouTube
 
 ## Current Goal
-Add rich domain models and orchestration services to the domain package
+Step 4: Vector Store Integration (branch step-4-vector-store)
