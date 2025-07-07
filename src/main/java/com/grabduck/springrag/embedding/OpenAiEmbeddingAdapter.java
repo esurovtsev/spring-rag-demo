@@ -6,13 +6,13 @@ import org.springframework.ai.openai.OpenAiEmbeddingClient;
 import org.springframework.stereotype.Component;
 
 import com.grabduck.springrag.domain.model.Embedding;
-import com.grabduck.springrag.domain.port.EmbeddingClient;
+import com.grabduck.springrag.domain.port.EmbeddingPort;
 
 import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class OpenAIEmbeddingClient implements EmbeddingClient {
+public class OpenAiEmbeddingAdapter implements EmbeddingPort {
 
     private final OpenAiEmbeddingClient embeddingClient;
 
